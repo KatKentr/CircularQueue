@@ -1,21 +1,21 @@
 /******************************************************************************
 * Compilation: javac QueueCircular.java
-* Execution: java QueueCircular < in-p1e1.txt > out-p1e1.txt
+* Execution: java QueueCircular < input-circularQueue.txt
 * Dependencies: StdIn.java StdOut.java 
-* Data files: in-p1e1.txt
-*
+* Data files: input-circularQueue.txt
+* Aikaterini Kentroti
 ******************************************************************************/
  
 import java.util.NoSuchElementException;
 
 /**
- *  This implemetation of a circular queue is based on the {@code Queue} class, which represents a first-in-first-out (FIFO)
+ *  This implementation of a circular queue is based on the Queue.java class, which represents a classic first-in-first-out (FIFO)
  *  queue of generic items, presented in the book Algorithms by the authors Robert Sedgewick and Kevin Wyne.
  *  @param <Item> the generic type of an item in this queue
  */
 public class QueueCircular<Item>  {
-    private Node<Item> last;     // end of queue
-    private int n;               // number of elements on queue
+    private Node<Item> last;     
+    private int n;               // number of elements in queue
 
     // helper linked list class
     private static class Node<Item> {
@@ -31,39 +31,26 @@ public class QueueCircular<Item>  {
         n = 0;
     }
 
-    /**
-     * Returns true if this queue is empty.
-     *
-     * @return {@code true} if this queue is empty; {@code false} otherwise
-     */
-    public boolean isEmpty() {
+   
+    public boolean isEmpty() {   //returns true if queue is empty, false otherwise
         return n==0;
     }
 
-    /**
-     * Returns the number of items in this queue.
-     *
-     * @return the number of items in this queue
-     */
-    public int size() {
+   
+    public int size() {    //returns number of items in the queue
         return n;
     }
 
-    /**
-     * Returns the item least recently added to this queue, not used though
-     *
-     * @return the item least recently added to this queue
-     * @throws NoSuchElementException if this queue is empty
-     */
+   
     public Item peek() {
-        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");       //returns the item least recently added in this queue
         return last.next.item;
     }
 
     /**
      * Adds the item to this queue.
      *
-     * @param  item the item to add
+     * @param the item to add
      */
     public void enqueue(Item item) {
     	// Initializes a temporary item -> temp to hold always the first item
@@ -72,7 +59,7 @@ public class QueueCircular<Item>  {
     	// Saves the current last item of the queue before adding a new one
     	Node<Item> oldlast = last;
     	
-    	// Declares a new item -> which will be the new last item of our list
+    	// Declares a new item -> which will be the new last item of the linked list
         last = new Node<Item>();
         // Set the new item value to the one given by the user
         last.item=item;
@@ -100,9 +87,7 @@ public class QueueCircular<Item>  {
 
     /**
      * Removes and returns the item on this queue that was least recently added.
-     *
-     * @return the item on this queue that was least recently added
-     * @throws NoSuchElementException if this queue is empty
+        NoSuchElementException if this queue is empty
      */
     public Item dequeue() {
     	if (isEmpty()) throw new NoSuchElementException("Queue underflow");
@@ -117,7 +102,7 @@ public class QueueCircular<Item>  {
 
    
     /**
-     * Unit tests the {@code QueueCircular} data type.
+     * Unit tests the  QueueCircular data type.
      *
      * @param args the command-line arguments
      */
@@ -125,8 +110,7 @@ public class QueueCircular<Item>  {
         QueueCircular<String> queue = new QueueCircular<String>();
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-"))
-                queue.enqueue(item);           
+            queue.enqueue(item);           
         }
         
         StdOut.println("Queue size: " + queue.size());
