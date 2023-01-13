@@ -9,8 +9,7 @@
 import java.util.NoSuchElementException;
 
 /**
- *  This implementation of a circular queue is based on the Queue.java class, which represents a classic first-in-first-out (FIFO)
- *  queue of generic items, presented in the book Algorithms by the authors Robert Sedgewick and Kevin Wyne.
+ *  a Queue implementation that uses a circular linked list
  *  @param <Item> the generic type of an item in this queue
  */
 public class QueueCircular<Item>  {
